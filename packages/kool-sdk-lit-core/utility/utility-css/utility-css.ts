@@ -44,16 +44,19 @@ export const getCssClass = (...args: CssClass[]): string => {
   let allCssClass: string = '';
   if (args) {
     const classes: string[] = args.flat().map((className: CssClass) => {
-      const type = typeof className
+      const typeOf = typeof className
       let calcClass = ''
       if (isValueEmpty(!className)) {
         /* empty */
-      } else if (type === 'string' || type === 'number') {
-        calcClass = className.toString();
-      } else if (type === 'object') {
+      } else if (typeOf === 'string' || typeOf === 'number') {
+        calcClass = className?.toString() ?? '';
+      } else if (typeOf === 'object') {
+        if (isIterable(className)) {
+          calcClass = [...className].join(' ');
+        }
         const _classes = Array.isArray(className)
           ? className
-          : Object.entries(className).map(([key, value]) => (value ? key : ''));
+          : Object.entries(className ?? {}).map(([key, value]) => (value ? key : ''));
         const cssCondition = _classes.length ? 
            _classes.filter((c) => !!c) : 
            [];
@@ -284,3 +287,13 @@ export const getCssPrefixClass = (...classSegments: string[]): string => {
   return `${SDK_PREFIX}${getCssJoinClass.call(this, ...classSegments)}`;
 }
 
+/**
+ * Converts a DOMTokenList to a string of CSS classes
+ * @param classList {DOMTokenList} The DOMTokenList to convert
+ * @returns {string} A string of CSS classes
+ */
+export const getCssListString = (classList: DOMTokenList) => {
+  const classArray = [...classList];
+  const classesString = classArray.join(' ');
+  return classesString;
+}
