@@ -1,0 +1,15 @@
+{
+  "name": "kool-sdk-lit-core",
+  "version": "1.0.0",
+  "description": "Core components",
+  "main": "index.js",
+  "author": "Kevin Downing (kevin.downing@imagize.com)",
+  "license": "MIT",
+  "dependencies": {
+    "lit": "^3.3.2"
+  },
+  "devDependencies": {
+    "@types/node": "^25.5.0",
+    "typescript": "^5.9.3"
+  }
+}
