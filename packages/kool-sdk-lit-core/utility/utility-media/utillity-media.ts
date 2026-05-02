@@ -28,7 +28,6 @@ export const MEDIA_SIZE_VALUES: Record<MediaSize, number> = {
  */
 export const MEDIA_SIZE: MediaSize[] = ['lt', 'lr', 'lg', 'md', 'sm', 'sr'];
 
-
 /**
  * Find the current breakpoint and returns the size
  * @returns the breakpoint size or undefined if the match fails
